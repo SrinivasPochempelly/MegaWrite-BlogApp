@@ -1,0 +1,159 @@
+/* Import Google Fonts for modern typography */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  padding-top: 70px; /* Adjusted for fixed-top navbar */
+  padding-bottom: 100px; /* Space for footer */
+  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif;
+}
+
+.article-list {
+  padding: 0 15px;
+}
+
+/* Navbar */
+.navbar {
+  z-index: 1000;
+}
+
+/* Footer */
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Article card styles */
+.article-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Image wrapper and overlay */
+.article-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-top {
+  max-height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.detail-img {
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.update-img {
+  max-height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  padding: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.article-image-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-caption {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Carousel adjustments */
+.carousel {
+  position: relative;
+}
+
+.carousel-inner {
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+/* Article detail styles */
+.article-detail .card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Animations */
+.animate__fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form container */
+.form-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Alert styling */
+.alert {
+  margin-bottom: 20px;
+}
+
+/* Placeholder image */
+.card-img-top[src="/placeholder.jpg"] {
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: 1rem;
+  text-align: center;
+}
+/* Custom card width control */
+.custom-article-card {
+  width: 100%;
+  max-width: 500px; /* You can adjust this to your preferred width */
+}
