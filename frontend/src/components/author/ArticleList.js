@@ -31,7 +31,7 @@ function ArticleList({ userType }) {
 
     const fetchArticles = async () => {
       try {
-        let url = `http://localhost:9898/author-api/articles/${username}`;
+        let url = `${process.env.REACT_APP_API_URL}/author-api/articles/${username}`;
         if (userType === 'author') {
           url += `?status=${showDeleted ? 'false' : 'true'}`;
         }
@@ -70,7 +70,7 @@ function ArticleList({ userType }) {
     try {
       console.log('Deleting article:', { articleId, username });
       const response = await axios.put(
-        `http://localhost:9898/author-api/article/soft-delete/${articleId}`,
+        `${process.env.REACT_APP_API_URL}/author-api/article/soft-delete/${articleId}`,
         { username },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -102,7 +102,7 @@ function ArticleList({ userType }) {
     try {
       console.log('Restoring article:', { articleId, username });
       const response = await axios.put(
-        `http://localhost:9898/author-api/article/restore/${articleId}`,
+        `${process.env.REACT_APP_API_URL}/author-api/article/restore/${articleId}`,
         { username },
         { headers: { Authorization: `Bearer ${token}` } }
       );

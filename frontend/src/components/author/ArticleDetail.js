@@ -31,7 +31,7 @@ function ArticleDetail() {
 
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`http://localhost:9898/author-api/articles/${username}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/author-api/articles/${username}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const fetchedArticles = response.data.Articles || response.data.articles || [];

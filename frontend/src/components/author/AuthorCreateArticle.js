@@ -53,8 +53,11 @@ function AuthorCreateArticle() {
     });
 
     try {
-      const response = await axios.post('http://localhost:9898/author-api/article', form, {
-        headers: { Authorization: `Bearer ${token}` },
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/author-api/article`, form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
       });
       setSuccess(response.data.message);
       setError('');

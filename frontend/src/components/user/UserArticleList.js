@@ -20,8 +20,7 @@ function UserArticleList() {
 useEffect(() => {
   const fetchArticles = async () => {
     try {
-      console.log('Fetching articles from http://localhost:9898/user-api/articles');
-      const response = await axios.get('http://localhost:9898/user-api/articles');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/user-api/articles`);
       console.log('API Response:', response.data);
       const activeArticles = response.data.articles
         .filter((article) => article.status)

@@ -33,7 +33,7 @@ function AuthorAuth() {
     try {
       let response;
       if (isLogin) {
-        response = await axios.post('http://localhost:9898/author-api/login', {
+        response = await axios.post(`${process.env.REACT_APP_API_URL}/author-api/login`, {
           userType: 'author',
           username: formData.username,
           password: formData.password,
@@ -48,7 +48,7 @@ function AuthorAuth() {
           setError(response.data.message);
         }
       } else {
-        response = await axios.post('http://localhost:9898/author-api/author', {
+        response = await axios.post(`${process.env.REACT_APP_API_URL}/author-api/author`, {
           userType: 'author',
           username: formData.username,
           password: formData.password,

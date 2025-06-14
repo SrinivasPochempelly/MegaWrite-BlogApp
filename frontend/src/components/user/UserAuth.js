@@ -32,7 +32,7 @@ function UserAuth() {
       ? { username: formData.username, password: formData.password }
       : formData;
     try {
-      const response = await axios.post(`http://localhost:9898/user-api/${endpoint}`, payload);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/user-api/${endpoint}`, payload);
       // console.log(response);
      if (isLogin) {
       if (response.data.token) {

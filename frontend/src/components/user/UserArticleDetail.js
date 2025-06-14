@@ -33,7 +33,7 @@ function UserArticleDetail() {
 
     const fetchArticle = async () => {
       try {
-        const response = await axios.get('http://localhost:9898/user-api/articles');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/user-api/articles`);
         const article = response.data.articles.find((a) => String(a.articleId) === String(id) && a.status);
         if (article) {
           setArticle(article);
@@ -68,14 +68,14 @@ function UserArticleDetail() {
     };
     try {
       const response = await axios.put(
-        `http://localhost:9898/user-api/comment/${id}`,
+        `${process.env.REACT_APP_API_URL}/user-api/comment/${id}`,
         commentObj,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setSuccess(response.data.message);
       setError('');
       setComment('');
-      const updatedResponse = await axios.get('http://localhost:9898/user-api/articles');
+      const updatedResponse = await axios.get(`${process.env.REACT_APP_API_URL}/user-api/articles`);
       const updatedArticle = updatedResponse.data.articles.find((a) => String(a.articleId) === String(id));
       setArticle(updatedArticle);
     } catch (err) {

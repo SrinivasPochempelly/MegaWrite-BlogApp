@@ -24,7 +24,7 @@ function AuthorUpdateArticle() {
 
     const fetchArticle = async () => {
       try {
-        const response = await axios.get(`http://localhost:9898/author-api/articles/${username}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/author-api/articles/${username}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const fetchedArticles = response.data.Articles || response.data.articles || [];
@@ -83,7 +83,7 @@ function AuthorUpdateArticle() {
       }
     });
     try {
-      const response = await axios.put('http://localhost:9898/author-api/article', form, {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/author-api/article`, form, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' },
       });
       setSuccess(response.data.message);
