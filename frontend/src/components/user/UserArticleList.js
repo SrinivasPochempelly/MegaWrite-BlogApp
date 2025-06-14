@@ -29,6 +29,7 @@ useEffect(() => {
       setArticles(activeArticles);
       setError('');
     } catch (err) {
+      
       const errorMsg = err.response?.data?.message || 'Failed to fetch articles';
       console.error('Fetch Error:', err);
       setError(errorMsg);

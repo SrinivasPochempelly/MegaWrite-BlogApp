@@ -10,48 +10,48 @@ app.use(cors());
 // Serve static files from uploads folder
 app.use('/uploads', exp.static('uploads'));
 
-//import API routes
+// Import API routes
 const userApp = require('./API/userApi')
 const authorApp = require('./API/authorApi')
 const adminApp = require('./API/adminApi')
 
-//connect to db
+// Use built-in middleware (body parser)
+app.use(exp.json())
+
+// Connect to db
 mongoClient.connect(process.env.DB_URL)
 .then(client => {
-    //get db object 
+    // Get db object 
     const blogdb = client.db('blogdb')
-    //get collection obj
+
+    // Get collection objects
     const usersCollection = blogdb.collection('usersCollection')
     const articlesCollection = blogdb.collection('articlesCollection')
     const authorsCollection = blogdb.collection('authorsCollection')
     const adminCollection = blogdb.collection('adminCollection')
-    //share collection obj using express app
-    app.set('usersCollection',usersCollection)
+
+    // Share collection objects using express app
+    app.set('usersCollection', usersCollection)
     app.set('articlesCollection', articlesCollection)
     app.set('authorsCollection', authorsCollection)
     app.set('adminCollection', adminCollection)
 
-    console.log('db connection successfull')
+    console.log('Database connection successful')
+
+    // Mount API routes (Do this only after DB is connected)
+    app.use('/user-api', userApp)
+    app.use('/author-api', authorApp)
+    app.use('/admin-api', adminApp)
+
+    // Error catching middleware
+    app.use((err, req, res, next) => {
+        res.send({ error: err.message })
+    })
+
+    // Start the server ONLY after DB connection is successful
+    const port = process.env.PORT || 9989
+    app.listen(port, () => console.log(`HTTP Server running on port ${port} .....`))
 })
-.catch(err=> {
-    console.log("Error in db connection : ", err)
+.catch(err => {
+    console.log("Error in DB connection:", err)
 })
-
-//use built in middleware (body parser)
-app.use(exp.json())
-
-//if path starts with user-api, send req to userApp
-app.use('/user-api', userApp)
-//if path starts with author-api, send req to authorApp
-app.use('/author-api', authorApp)
-//if path starts with admin-api, send req to adminApp
-app.use('/admin-api', adminApp)
-
-//error catching middleware
-app.use((err, req, res, next) => {
-    res.send({ error: err.message })
-})
-
-//assigning port number
-const port = process.env.PORT || 9989
-app.listen(port, () => console.log(`http Server running on port ${port} .....`))
