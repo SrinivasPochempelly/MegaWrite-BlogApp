@@ -1,6 +1,3 @@
-Here’s your **MegaWrite-BlogApp README** in a clean, structured, and easy-to-read format:
-
----
 
 # 📚 MegaWrite-BlogApp
 
@@ -328,7 +325,3 @@ For support or inquiries:
 
 * **Email:** [support@megawriteblogapp.com](mailto:srinivaspochempelly@gmail.com)
 * **Phone:** +91 6302596234
-
----
-
-If you want, I can help you format this into a professional `README.md` file for GitHub directly. Let me know! 😊
